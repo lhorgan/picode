@@ -44,11 +44,13 @@ try:
             pass
         if ARMED:
             if not GPIO.input(PICKED_UP_PIN): # push button released
+                r = requests.get(f"{SERVER_URL}/set_play_song")
                 print("Box has been picked up")
-                play(song_p1)
+                sleep(173)
+                #play(song_p1)
                 GPIO.output(OPEN_BOX_PIN, GPIO.HIGH)
-                sleep(6)
-                play(song_p2)
+                #sleep(6)
+                #play(song_p2)
                 break
         #print(GPIO.input(4))
         sleep(0.5)
