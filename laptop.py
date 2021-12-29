@@ -1,4 +1,3 @@
-import RPi.GPIO as GPIO
 from time import sleep
 import requests
 
@@ -12,12 +11,11 @@ SERVER_URL = "http://3.19.213.203:6081"
 
 PLAY_SONG = False
 
-try:
-    while True:
-        r = requests.get(f"{SERVER_URL}/status")
-        if status == "play_song" and not PLAY_SONG:
-            PLAY_SONG = True
-            play(song_p1)
-            sleep(6)
-            play(song_p2)
-            break
+while True:
+    r = requests.get(f"{SERVER_URL}/status")
+    if r.text == "play_song" and not PLAY_SONG:
+        PLAY_SONG = True
+        play(song_p1)
+        sleep(6)
+        play(song_p2)
+        break
